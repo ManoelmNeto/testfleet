@@ -2,50 +2,56 @@ package com.example.fletmaxmobile
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.fletmaxmobile.RegisterActivity
+import com.example.fletmaxmobile.data.model.auth.LoginRequest
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class LoginActivity() : AppCompatActivity(), Parcelable {
-    constructor(parcel: Parcel) : this() {
-    }
+class LoginActivity : AppCompatActivity() {
+
+    private lateinit var cnpjInput: EditText
+    private lateinit var emailInput: EditText
+    private lateinit var senhaInput: EditText
+    private lateinit var btnLogin: Button
+    private lateinit var linkRegistro: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        findViewById<TextView>(R.id.tvCadastro).setOnClickListener {
+        cnpjInput = findViewById(R.id.inputCnpj)
+        emailInput = findViewById(R.id.inputEmail)
+        senhaInput = findViewById(R.id.inputSenha)
+        btnLogin = findViewById(R.id.btnLogin)
+        linkRegistro = findViewById(R.id.txtComeceAqui)
+
+        btnLogin.setOnClickListener {
+            val request = LoginRequest(
+                cnpj = cnpjInput.text.toString(),
+                email = emailInput.text.toString(),
+                password = senhaInput.text.toString()
+            )
+
+            RetrofitClient.api.login(request).enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@LoginActivity, "Login realizado", Toast.LENGTH_SHORT).show()
+                        // Salvar token e ir para Home
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Erro no login", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    Toast.makeText(this@LoginActivity, "Falha: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
+        linkRegistro.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-        }
-
-        findViewById<TextView>(R.id.tvEsqueceuSenha).setOnClickListener {
-            startActivity(Intent(this, ForgotPasswordActivity::class.java))
-        }
-
-        findViewById<Button>(R.id.btnLogin).setOnClickListener {
-            Toast.makeText(this, "Login efetuado (simulação)", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<LoginActivity> {
-        override fun createFromParcel(parcel: Parcel): LoginActivity {
-            return LoginActivity(parcel)
-        }
-
-        override fun newArray(size: Int): Array<LoginActivity?> {
-            return arrayOfNulls(size)
         }
     }
 }

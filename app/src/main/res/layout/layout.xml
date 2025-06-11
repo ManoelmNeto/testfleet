@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.fletmaxmobile.ui.auth.LoginFragment"
+        android:label="Login" >
+        <action android:id="@+id/action_login_to_register"
+            app:destination="@id/registerFragment" />
+        <action android:id="@+id/action_login_to_recover"
+            app:destination="@id/recoverPasswordFragment" />
+        <action android:id="@+id/action_login_to_dashboard"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.fletmaxmobile.ui.auth.RegisterFragment"
+        android:label="Cadastro" />
+
+    <fragment
+        android:id="@+id/recoverPasswordFragment"
+        android:name="com.example.fletmaxmobile.ui.auth.RecoverPasswordFragment"
+        android:label="Recuperar Senha" />
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.fletmaxmobile.ui.dashboard.DashboardFragment"
+        android:label="Dashboard">
+        <action android:id="@+id/action_dashboard_to_motoristas"
+            app:destination="@id/motoristaFragment" />
+        <action android:id="@+id/action_dashboard_to_caminhoes"
+            app:destination="@id/caminhaoFragment" />
+        <action android:id="@+id/action_dashboard_to_rotas"
+            app:destination="@id/rotaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/motoristaFragment"
+        android:name="com.example.fletmaxmobile.ui.motorista.MotoristaFragment"
+        android:label="Motoristas" />
+
+    <fragment
+        android:id="@+id/caminhaoFragment"
+        android:name="com.example.fletmaxmobile.ui.caminhao.CaminhaoFragment"
+        android:label="Caminhões" />
+
+    <fragment
+        android:id="@+id/rotaFragment"
+        android:name="com.example.fletmaxmobile.ui.rota.RotaFragment"
+        android:label="Rotas" />
+</navigation>
