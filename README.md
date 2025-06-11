@@ -4,8 +4,13 @@
 
 ## 👨‍💻 Discentes Desenvolvedores
 
+Manoel rodrigues de mesquita neto
 
-📍 **21 de maio de 2025 – Juazeiro do Norte - CE**
+Luiz neto maia pinto de macedo
+
+Guilherme cardoso coelho de sousa
+
+
 
 ---
 
@@ -59,33 +64,9 @@ FleetMax é uma **aplicação Android** com foco em:
 
 ---
 
-## ❗ Notas Importantes
-
-- O projeto **ainda não possui backend ou banco de dados** integrado.
-- Todas as informações exibidas são **somente para simulação da interface**.
-- A navegação entre telas já está **parcialmente implementada**.
-
----
-
-## 🔮 Futuras Etapas
-
-- Integração com banco de dados (Firebase, SQLite, etc.)
-- Implementação de sistema de autenticação funcional
-- Adição de lógica de negócios para controle de frota em tempo real
-
----
 
 ## 📂 Estrutura do Projeto
 
-```bash
-FletMaxMobile/
-├── app/
-│   ├── build.gradle.kts         # Build específico do módulo app
-│   └── src/main/
-│       ├── AndroidManifest.xml  # Configuração das permissões e atividades
-│       └── java/...             # Código-fonte da aplicação (em Kotlin)
-├── build.gradle.kts             # Build principal com configurações do projeto
-├── gradle/                      # Configurações do wrapper do Gradle
 ├── gradlew / gradlew.bat        # Executores do Gradle
 ├── settings.gradle.kts          # Configurações de módulos
 └── local.properties             # Caminho local do SDK
